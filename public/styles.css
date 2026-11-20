@@ -1,0 +1,292 @@
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("assets/space-grotesk-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("assets/space-grotesk-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122,
+    U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light;
+  --ink: #121613;
+  --paper: #f2f3e9;
+  --lime: #d9fa75;
+  --muted-light: #c2c9ba;
+  --muted-dark: #495448;
+  --dark-line: #343e34;
+  --light-line: #ced4c5;
+  --display-font: "Space Grotesk", system-ui, sans-serif;
+  --body-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font: 1rem/1.6 var(--body-font);
+}
+
+h1, h2, h3, p, dl, dd { margin: 0; }
+a { color: inherit; text-underline-offset: 0.2em; }
+img { display: block; max-width: 100%; }
+#projektek { scroll-margin-block-start: 1.5rem; }
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.shell {
+  width: min(100% - clamp(2.5rem, 9vw, 9rem), 77rem);
+  margin-inline: auto;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 2;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.75rem 1rem;
+  transform: translateY(-150%);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.skip-link:focus { transform: none; }
+
+.site-header { border-block-end: 1px solid var(--dark-line); }
+
+.header-inner, .footer-inner {
+  min-height: 4.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--paper);
+  font: 700 1.25rem/1 var(--display-font);
+  letter-spacing: -0.045em;
+  text-decoration: none;
+}
+
+.brand-icon {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border-radius: 0.25rem;
+  background: var(--lime);
+  color: var(--ink);
+  font-size: 1.23rem;
+  letter-spacing: -0.08em;
+}
+
+nav {
+  display: flex;
+  gap: clamp(0.8rem, 3vw, 2.25rem);
+  align-items: center;
+}
+
+nav a, .site-footer a {
+  padding-block: 0.6rem;
+  font-size: 0.9375rem;
+  text-decoration: none;
+}
+
+nav a:hover, .site-footer a:hover { text-decoration: underline; }
+
+.hero { overflow: hidden; }
+
+.hero-inner {
+  position: relative;
+  isolation: isolate;
+  min-height: clamp(31rem, 46vw, 40rem);
+  display: grid;
+  align-items: center;
+  padding-block: clamp(4.5rem, 8vw, 7.5rem);
+}
+
+.hero-copy { width: min(60vw, 42rem); }
+
+.hero h1 {
+  font: 700 clamp(2.75rem, 6.35vw, 6.1rem)/0.98 var(--display-font);
+  letter-spacing: -0.08em;
+}
+
+.hero h1 span { color: var(--lime); }
+
+.hero-copy p {
+  max-width: 35ch;
+  margin-block: 1.75rem 2rem;
+  color: var(--muted-light);
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+}
+
+.button {
+  display: inline-flex;
+  min-height: 3.1rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  background: var(--lime);
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.button:hover { background: #e9ffa9; }
+.button:focus-visible { outline-color: var(--lime); }
+
+.hero-visual {
+  position: absolute;
+  z-index: -1;
+  inset-block: 1.25rem;
+  inset-inline: 35% -4.5%;
+}
+
+.hero-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 75% center;
+}
+
+.hero-visual::after {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, var(--ink), transparent 34%, transparent 88%, var(--ink)),
+    linear-gradient(0deg, var(--ink), transparent 22%, transparent 86%, var(--ink));
+  content: "";
+}
+
+.projects {
+  background: var(--paper);
+  color: var(--ink);
+  padding-block: clamp(2.75rem, 6.5vw, 6.25rem);
+}
+
+.section-title {
+  padding-block-end: 0.85rem;
+  border-block-end: 1px solid var(--light-line);
+  font: 600 1.125rem/1.3 var(--display-font);
+}
+
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2.25rem, 7vw, 7rem);
+  align-items: start;
+  padding-block-start: clamp(1.75rem, 4vw, 3.5rem);
+}
+
+.project-status {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-block-end: 0.75rem;
+  color: var(--muted-dark);
+  font-size: 0.9375rem;
+  font-weight: 650;
+}
+
+.project-status::before {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: #4f741c;
+  content: "";
+}
+
+.project h3 {
+  font: 700 clamp(3rem, 6.25vw, 5.75rem)/1 var(--display-font);
+  letter-spacing: -0.075em;
+}
+
+.project-intro > p:last-child {
+  max-width: 36ch;
+  margin-block-start: 1rem;
+  color: var(--muted-dark);
+  font-size: clamp(1.0625rem, 1.5vw, 1.2rem);
+}
+
+.project-details > div {
+  padding-block: 0.9rem;
+  border-block-end: 1px solid var(--light-line);
+}
+
+.project-details > div:first-child { padding-block-start: 0; }
+
+.project-details dt {
+  font: 700 1.125rem/1.3 var(--display-font);
+}
+
+.project-details dd {
+  margin-block-start: 0.25rem;
+  color: var(--muted-dark);
+}
+
+.site-footer { color: var(--muted-light); }
+
+.site-footer span {
+  color: var(--paper);
+  font: 700 1.125rem/1.2 var(--display-font);
+  letter-spacing: -0.045em;
+}
+
+@media (max-width: 46rem) {
+  .header-inner, .footer-inner { min-height: 4.25rem; }
+  .brand { gap: 0.5rem; }
+
+  .hero-inner {
+    min-height: auto;
+    padding-block: 3.1rem 0;
+  }
+
+  .hero-copy { width: 100%; }
+  .hero h1 { font-size: clamp(2.55rem, 8.8vw, 4.125rem); }
+  .hero-copy p { margin-block: 1.4rem 1.5rem; }
+
+  .hero-visual {
+    position: relative;
+    inset: auto;
+    aspect-ratio: 5 / 3;
+    margin-inline: -1.25rem;
+  }
+
+  .hero-visual img { object-position: 78% 55%; }
+  .hero-visual::after {
+    background: linear-gradient(0deg, var(--ink), transparent 24%, transparent 76%, var(--ink));
+  }
+
+  .project { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 22rem) {
+  nav { gap: 0.7rem; }
+  .brand { font-size: 1.1rem; }
+  .hero h1 { font-size: 2.25rem; }
+}
