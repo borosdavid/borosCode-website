@@ -25,6 +25,6 @@ A `dev` a helyi előnézetet indítja, a `check` telepítés nélkül próbálja
 | Deploy command | `npm run deploy` |
 | Node.js | 22 vagy újabb |
 
-A `wrangler.jsonc` megadja a Worker nevét és a publikálandó `public/` könyvtárat. A `name` értékének egyeznie kell a Cloudflare-ben már létrehozott Worker nevével. Az alapértelmezett érték `boroscode`. A már a Workerhez rendelt `boroscode.com` egyéni domaint a Workers Builds beállításakor meg lehet tartani.
+A `wrangler.jsonc` megadja a Worker nevét és a publikálandó `public/` könyvtárat. A `name` értékének egyeznie kell a Cloudflare-ben már létrehozott Worker nevével. Az alapértelmezett érték `boroscode-website`. A már a Workerhez rendelt `boroscode.com` egyéni domaint a Workers Builds beállításakor meg lehet tartani.
 
 A betűtípus a Space Grotesk, licencszövege a `licenses/space-grotesk.txt` fájlban található. A tárolódobozok illusztrációja a főoldalhoz készült.
