@@ -226,12 +226,14 @@ nav a:hover, .site-footer a:hover { text-decoration: underline; }
   letter-spacing: -0.075em;
 }
 
-.project-intro > p:last-child {
+.project-summary {
   max-width: 36ch;
   margin-block-start: 1rem;
   color: var(--muted-dark);
   font-size: clamp(1.0625rem, 1.5vw, 1.2rem);
 }
+
+.project-intro .button { margin-block-start: 1.25rem; }
 
 .project-details > div {
   padding-block: 0.9rem;
