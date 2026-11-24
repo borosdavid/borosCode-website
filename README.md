@@ -75,3 +75,11 @@ Az alkalmazásfelhasználóknak az Otthontár saját belépése elegendő. Ha k�
 A 90 MiB-os mentési korlát a Cloudflare Free 100 MB-os kérésméret-határán belül marad. A **Windowsos tesztorigin** eléréséhez a Windows-gépnek és a hozzá tartozó tunnelnek futnia kell. Az éles Ubuntu-környezetet ez a feltétel nem írja le.
 
 [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/get-started/create-remote-tunnel/) · [Access service token](https://developers.cloudflare.com/cloudflare-one/access-controls/service-credentials/service-tokens/) · [Workers secrets](https://developers.cloudflare.com/workers/configuration/secrets/)
+
+## Verziózott Otthontár-erőforrások (Worker-hibajavítás, 2026-11-24)
+
+A Spring tartalomazonosítós URL-eket is kiadhat, például `/otthontar/inventory-05dd3b1888cc3bf8fbb4ec6e31139991.css`. A Worker allowlistája a név szerint ismert `inventory.css`, `inventory.js`, `auth.js`, `photo-input.js`, `pwa.js`, `sw.js`, `manifest.webmanifest` erőforrások **32 karakteres hexadecimális hash-sel** ellátott alakjait is továbbítja. Tetszőleges fájlútvonalat nem engedélyez.
+
+Teszt: `npm test` – a `tests/worker-assets.test.js` pozitív, negatív, eredet- és hozzáférésvédelmi regressziós próbákat tartalmaz. A javítás és tesztfájl a `main` ágban található ([Worker-javítás](https://github.com/borosdavid/borosCode-website/commit/dad64331fdf03aa8177912786392dd3b10241668) · [tesztek](https://github.com/borosdavid/borosCode-website/commit/52083add2abb168c67c270ab4c06a7e4622b9704)).
+
+**Éles verifikáció nyitott:** az itt végzett helyi Node-tesztek sikeresek, azonban ebből a munkamenetből sem a Workers Builds telepítés sikerét, sem a konkrét `boroscode.com` HTTP-válaszokat nem tudtuk megerősíteni. A következő ellenőrzés a Cloudflare build/deployment állapota, a hash-elt CSS/JS/manifest URL-ek 200-as válasza, majd a belépő, a hitelesített leltár és az origin Spring Security beállításai.
