@@ -33,6 +33,16 @@ A betűtípus a Space Grotesk, licencszövege a `licenses/space-grotesk.txt` fá
 
 A főoldal gombja a `https://boroscode.com/otthontar/` útvonalra visz. A Worker innen az Otthontár szerverére továbbítja a kéréseket. A leltárba az Otthontár saját felhasználónevével és jelszavával lehet belépni.
 
+### Jelenlegi Ubuntu-alapú éles útvonal (2026-11-24-i dokumentált állapot)
+
+A jelenlegi nyilvános `/otthontar/` útvonal a Cloudflare Worker és Tunnel mögötti **Ubuntu**-példányhoz kapcsolódik; a Windowsos leírás alább **elkülönített, opcionális tesztpéldányhoz** tartozik, nem az éles kiszolgáló kötelező telepítése. A rendszer állapotát és az Ubuntu-frissítés menetét az [Otthontár projektállapota](https://github.com/borosdavid/borosCode/blob/main/projekt/ALLAPOT.md), a [távoli hozzáférési leírás](https://github.com/borosdavid/borosCode/blob/main/projekt/SZERVER-TAVOLI-HOZZAFERES.md) és a [dev Ubuntu frissítési útmutató](https://github.com/borosdavid/borosCode/blob/dev/docs/KNOWHOW-ubuntu-frissites.md) tárgyalja. A Cloudflare-fiókban ténylegesen beállított tunnel és origin aktuális értékeit külön kell ellenőrizni.
+
+**Nyitott üzemeltetési hiba:** az Otthontár HTML által generált, tartalomhash-es CSS/JS/manifest URL-ek közül több 404-et kap. A Worker `src/worker.js` allowlistája jelenleg csak az alapneveket engedi. A feladatot a [privát konzisztencia-vizsgálat](https://github.com/borosdavid/borosCode-knowledge/blob/main/reviews/2026-11-24-KONZISZTENCIA.md) dokumentálja. Ez a README-frissítés **nem jelent kódjavítást vagy újratelepítést**.
+
+### Cloudflare – a korábbi Windows-tesztkonfiguráció részletei
+
+Az alábbi korábbi Cloudflare-lépések egy Windows tesztoriginre (`127.0.0.1:18740`) vonatkoznak. Ne alkalmazd őket változatlanul az Ubuntu éles példányára.
+
 ### A Windows-tesztpéldány beállítása
 
 A `borosdavid/borosCode` repó friss `dev` munkapéldányában:
@@ -62,6 +72,6 @@ A helyi ellenőrző végpont `http://127.0.0.1:18740/otthontar/actuator/health`.
 
 Az alkalmazásfelhasználóknak az Otthontár saját belépése elegendő. Ha külön Cloudflare e-mailes ellenőrzést is szeretnél, akkor a `boroscode.com/otthontar` útvonalra és minden alútvonalára állíts be Access-szabályt. A háttérhost Service Auth alkalmazása ettől függetlenül szükséges.
 
-A 90 MiB-os mentési korlát a Cloudflare Free 100 MB-os kérésméret-határán belül marad. Az alkalmazás eléréséhez a Windows-gépnek és a tunnelnek futnia kell.
+A 90 MiB-os mentési korlát a Cloudflare Free 100 MB-os kérésméret-határán belül marad. A **Windowsos tesztorigin** eléréséhez a Windows-gépnek és a hozzá tartozó tunnelnek futnia kell. Az éles Ubuntu-környezetet ez a feltétel nem írja le.
 
 [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/get-started/create-remote-tunnel/) · [Access service token](https://developers.cloudflare.com/cloudflare-one/access-controls/service-credentials/service-tokens/) · [Workers secrets](https://developers.cloudflare.com/workers/configuration/secrets/)
