@@ -1,7 +1,8 @@
 const publicOrigin = 'https://boroscode.com';
 const application = '/otthontar';
 const tunnelOrigin = 'https://otthontar-origin.boroscode.com';
-const applicationPath = /^\/(?:otthontar\/(?:$|(?:leltar|api|auth|icons)(?:\/|$)|(?:login|logout|offline\.html|inventory\.(?:js|css)|auth\.js|photo-input\.js|pwa\.js|sw\.js|manifest\.webmanifest)$))/;
+// Keep the proxy allowlist narrow while accepting Spring's content-fingerprinted static resources.
+const applicationPath = /^\/otthontar\/(?:$|(?:leltar|api|auth|icons)(?:\/|$)|(?:login|logout|offline\.html|inventory(?:-[0-9a-f]{32})?\.css|(?:inventory|auth|photo-input|pwa|sw)(?:-[0-9a-f]{32})?\.js|manifest(?:-[0-9a-f]{32})?\.webmanifest)$)/;
 const requestHeaders = [
     'accept', 'accept-language', 'content-type', 'origin', 'range', 'sec-fetch-site',
     'x-csrf-token', 'x-otthontar-request', 'x-otthontar-user', 'x-otthontar-save-id',
